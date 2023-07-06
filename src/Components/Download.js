@@ -1,14 +1,15 @@
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Upload from "./Upload";
 
 const Download = () =>{
+  
+    const [fileName,setFileName] = useState("");
+    const [file,setFile] = useState(null);
     
     useEffect(()=>{
         searchFile();
     },[]);
-
-    const [fileName,setFileName] = useState("");
-    const [file,setFile] = useState(null);
 
     const {file_id,file_key} = useParams();
 
@@ -18,11 +19,12 @@ const Download = () =>{
     }
 
     // Search file
-    const searchFile =async()=>{
+    const searchFile = async () => {
         try{
           const data = await fetch(`http://localhost:8000/${file_id}/${file_key}`);
-          if(data.ok){
-            const json = await data.json(); 
+          const json = await data.json();
+          console.log(json);
+          if(json.status){
             const bufferData = json.blob;
             const uint8Array = new Uint8Array(bufferData.data);
             const blob = new Blob([uint8Array], { type: 'application/octet-stream' });
@@ -41,6 +43,7 @@ const Download = () =>{
               setFileName(json.name);
           }
         }catch(err){
+          alert("Key is invalid");
           console.log("Error seraching for file ",err);
         }
     }
@@ -87,11 +90,15 @@ const Download = () =>{
         downloadFile(file);
     }
 
+    if(file === null){
+      return (<Upload />);
+    };
+
     return (<>
-        <h1>Download your File Here</h1>
-        <h3>File Name: {fileName}</h3>
-        <button onClick={handleDownload}>Download</button>
-    </>)
+      <h1>Download your File Here</h1>
+      <h3>File Name: {fileName}</h3>
+      <button onClick={handleDownload}>Download</button>
+    </>);
 };
 
 export default Download;
