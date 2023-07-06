@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Upload from "./Upload";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Download = () =>{
   
@@ -43,7 +45,9 @@ const Download = () =>{
               setFileName(json.name);
           }
         }catch(err){
-          alert("Key is invalid");
+          toast("Invalid Link",{
+            position: toast.POSITION.TOP_CENTER,
+        });
           console.log("Error seraching for file ",err);
         }
     }
@@ -91,7 +95,10 @@ const Download = () =>{
     }
 
     if(file === null){
-      return (<Upload />);
+      return (<>
+      <Upload />
+      <ToastContainer />
+      </>);
     };
 
     return (<>

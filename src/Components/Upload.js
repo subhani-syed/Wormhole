@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Upload = () =>{
 
@@ -67,15 +69,28 @@ const Upload = () =>{
         }
         }
     }
-
+    const copyUrl = () =>{
+        navigator.clipboard.writeText(downloadUrl);
+        toast("Link Copied",{
+            position: toast.POSITION.TOP_CENTER,
+        });
+    }
     if(downloadUrl){
+        toast("File Uploaded Successfully",{
+            position: toast.POSITION.TOP_CENTER,
+        });
         return (<>
             <div>
-                <h1>Download Link: {downloadUrl}</h1>
+                <h1>Your file is ready to share!</h1>
+                <p>Copy the link to share the file</p>
+                <input type="text" value={downloadUrl} readOnly size={downloadUrl.length}/>
+                <br></br>
+                <button onClick={copyUrl}>Copy Link</button>
+                <ToastContainer/>
             </div>
         </>)
     };
-    
+
     return (<>
         <h1>Upload your File Here</h1>
         <div>
