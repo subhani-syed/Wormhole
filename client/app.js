@@ -4,16 +4,25 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import Upload from "./Components/Upload";
 import ErrorPage from "./Components/ErrorPage";
 import Download from "./Components/Download";
-
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Upload />,
+        element:<>
+            <Header/>
+            <Upload />
+            <Footer />
+        </> ,
         errorElement: <ErrorPage/>,
     },
     {
         path:"/:file_id/:file_key",
-        element: <Download/>,
+        element: <>
+            <Header/>
+            <Download/>
+            <Footer/>
+        </>,
         errorElement: <ErrorPage/>,
     }
 ]);
