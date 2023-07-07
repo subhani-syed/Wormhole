@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom/client";
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
-import Upload from "./Components/Upload";
-import ErrorPage from "./Components/ErrorPage";
-import Download from "./Components/Download";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import Upload from "./src/Components/Upload";
+import ErrorPage from "./src/Components/ErrorPage";
+import Download from "./src/Components/Download";
+import Header from "./src/Components/Header";
+import Footer from "./src/Components/Footer";
 const router = createBrowserRouter([
     {
         path: "/",
