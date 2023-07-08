@@ -6,11 +6,15 @@ const Upload = () =>{
 
     const [downloadUrl,setDownloadUrl] = useState("");
     const [selectedFile,setSelectedFile] = useState(null);
+    const [ttl,setTtl] = useState(600000);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
     
+    const handleTTLChange = (event) =>{
+        setTtl(Number(event.target.value))
+    }
     // Encrypting the Blob
     async function encryptblob(blob) {
         let iv = crypto.getRandomValues(new Uint8Array(12));
@@ -58,7 +62,7 @@ const Upload = () =>{
             formData.append("file_data", enc_blob);
             formData.append("iv",iv);
             formData.append("id",file_id);
-            formData.append("expire_time",Date.now() + 600000); //10 Minutes
+            formData.append("expire_time",Date.now() + ttl);
             // Handle error here---->
             const data = await fetch("http://localhost:8000/upload",{method:"POST",body:formData});
             console.log(data);
@@ -92,10 +96,26 @@ const Upload = () =>{
     };
 
     return (<>
-        <h1>Upload your File Here</h1>
-        <div>
-            <input type="file" onChange={handleFileChange}></input>
-            <input type="submit" value="Upload" onClick={handleUpload}></input>
+        <div className="flex bg-[#D9D9D9] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] m-10 p-10">
+            <div className="bg-[#555555] rounded-[30px] p-10 w-1/2">
+                <h1 className="text-3xl">Upload your File Here</h1>
+                <div>
+                    <input type="file" onChange={handleFileChange} />
+                    <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] mx-5 p-5 text-2xl " onClick={handleUpload}>Send File</button>
+                    <br></br>
+                    <label>Delete File after:</label>
+                    <select onChange={handleTTLChange}>
+                        <option value="600000" >10 Minutes</option>
+                        <option value="1800000">30 Minutes</option>
+                        <option value="3600000">1 Hour</option>
+                        <option value="86400000">24 Hours</option>
+                    </select>
+                </div>
+            </div>
+            <div className=" p-10 w-1/2">
+                <h1 className="text-4xl">Simple, private file sharing</h1>
+                <p className="text-2xl">Wormhole lets you share files with end-to-end encryption and a link that automatically expires. So you can keep what you share private and make sure your stuff doesn't stay online forever.</p>
+            </div>
         </div>
     </>)
 };
