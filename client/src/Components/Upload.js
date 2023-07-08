@@ -84,14 +84,13 @@ const Upload = () =>{
             position: toast.POSITION.TOP_CENTER,
         });
         return (<>
-            <div>
-                <h1>Your file is ready to share!</h1>
-                <p>Copy the link to share the file</p>
-                <input type="text" value={downloadUrl} readOnly size={downloadUrl.length}/>
-                <br></br>
-                <button onClick={copyUrl}>Copy Link</button>
-                <ToastContainer/>
+            <div className="bg-[#555555] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] m-10 p-10">
+                <h1 className="text-4xl">Your file is ready to share!</h1>
+                <p className="text-xl">Copy the link to share the file</p>
+                <input className="bg-gray-100 rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] p-3" type="text" value={downloadUrl} readOnly size={downloadUrl.length}/>
+                <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] mx-5 p-5 text-2xl" onClick={copyUrl}>Copy Link</button>
             </div>
+            <ToastContainer/>
         </>)
     };
 
@@ -103,9 +102,9 @@ const Upload = () =>{
                     <input type="file" onChange={handleFileChange} />
                     <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] mx-5 p-5 text-2xl " onClick={handleUpload}>Send File</button>
                     <br></br>
-                    <label>Delete File after:</label>
-                    <select onChange={handleTTLChange}>
-                        <option value="600000" >10 Minutes</option>
+                    <label className="text-2xl">Delete File after: </label>
+                    <select className="bg-gray-200 border border-black-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={handleTTLChange}>
+                        <option value="600000" className="">10 Minutes</option>
                         <option value="1800000">30 Minutes</option>
                         <option value="3600000">1 Hour</option>
                         <option value="86400000">24 Hours</option>
