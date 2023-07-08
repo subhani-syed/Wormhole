@@ -102,9 +102,12 @@ const Download = () =>{
     };
 
     return (<>
-      <h1>Download your File Here</h1>
-      <h3>File Name: {fileName}</h3>
-      <button onClick={handleDownload}>Download</button>
+      <div className="bg-[#555555] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] m-10 p-10">
+        <h1 className="text-4xl">Download your File Here</h1>
+        <h3 className="text-2xl">File Name: {fileName}</h3>
+        <br></br>
+        <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black m-5 p-5 text-xl hover:drop-shadow-[4px_4px_0px_black] hover:-translate-x-2 hover:-translate-y-1 duration-200" onClick={handleDownload}>Download</button>
+      </div>
     </>);
 };
 

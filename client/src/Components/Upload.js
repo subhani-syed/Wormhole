@@ -88,7 +88,7 @@ const Upload = () =>{
                 <h1 className="text-4xl">Your file is ready to share!</h1>
                 <p className="text-xl">Copy the link to share the file</p>
                 <input className="bg-gray-100 rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] p-3" type="text" value={downloadUrl} readOnly size={downloadUrl.length}/>
-                <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] mx-5 p-5 text-2xl" onClick={copyUrl}>Copy Link</button>
+                <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black mx-5 p-5 text-xl hover:drop-shadow-[4px_4px_0px_black] hover:-translate-x-2 hover:-translate-y-1 duration-200" onClick={copyUrl}>Copy Link</button>
             </div>
             <ToastContainer/>
         </>)
@@ -100,7 +100,7 @@ const Upload = () =>{
                 <h1 className="text-3xl">Upload your File Here</h1>
                 <div>
                     <input type="file" onChange={handleFileChange} />
-                    <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black drop-shadow-[4px_4px_0px_black] mx-5 p-5 text-2xl " onClick={handleUpload}>Send File</button>
+                    <button className="bg-[#FFFF00] rounded-[30px] border-4 border-black mx-5 p-5 text-xl hover:drop-shadow-[4px_4px_0px_black] hover:-translate-x-2 hover:-translate-y-1 duration-200 " onClick={handleUpload}>Send File</button>
                     <br></br>
                     <label className="text-2xl">Delete File after: </label>
                     <select className="bg-gray-200 border border-black-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onChange={handleTTLChange}>
