@@ -7,14 +7,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+require('dotenv').config()
 
-const PORT = 8000;
+const PORT = process.env.SERVER_PORT;
 
 // MongoDB
 const mongodb = require('mongodb');
-const {MongoClient} = require("mongodb");
-const url = "mongodb://localhost:27017";
-const client = new MongoClient(url);
+const {MongoClient,ServerApiVersion} = require("mongodb");
+const uri = `mongodb+srv://${process.env.DB_UNAME}:${process.env.DB_PWD}@wormhole-cluster.ecuhlhn.mongodb.net/?retryWrites=true&w=majority`
+const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  });
 console.log("Connected to MongoDB");
 
 client.connect((err)=>{
