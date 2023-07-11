@@ -64,8 +64,10 @@ const Upload = () =>{
             formData.append("id",file_id);
             formData.append("expire_time",Date.now() + ttl);
             // Handle error here---->
-            const apiUrl = process.env.API_URL;
-            const clientUrl = process.env.CLIENT_URL;
+            const apiUrl = process.env.REACT_APP_API_URL;
+            console.log(apiUrl);
+            const clientUrl = process.env.REACT_APP_CLIENT_URL;
+            console.log(clientUrl);
             const data = await fetch(`https://${apiUrl}/upload`,{method:"POST",body:formData});
             console.log(data);
             setDownloadUrl(`https://${clientUrl}/${file_id}/${key}`);

@@ -120,7 +120,7 @@ const deleteExpiredFiles = async () =>{
 setInterval(()=>{
     deleteExpiredFiles();
 },10000);
-
+console.log(apiUrl);
 app.listen(PORT,()=>{
     console.log(`Server listenig on ${apiUrl}:${PORT}`);
 })
