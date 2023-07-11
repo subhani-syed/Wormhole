@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 require('dotenv').config()
 
 const PORT = process.env.SERVER_PORT;
+const apiUrl = process.env.API_URL;
 
 // MongoDB
 const mongodb = require('mongodb');
@@ -121,5 +122,5 @@ setInterval(()=>{
 },10000);
 
 app.listen(PORT,()=>{
-    console.log(`Server listenig on ${process.env.API_URL}:${PORT}`);
+    console.log(`Server listenig on ${apiUrl}:${PORT}`);
 })
