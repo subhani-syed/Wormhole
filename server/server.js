@@ -121,5 +121,5 @@ setInterval(()=>{
 },10000);
 
 app.listen(PORT,()=>{
-    console.log(`Server listenig on http://localhost:${PORT}`);
+    console.log(`Server listenig on ${process.env.API_URL}:${PORT}`);
 })

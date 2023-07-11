@@ -23,7 +23,7 @@ const Download = () =>{
     // Search file
     const searchFile = async () => {
         try{
-          const data = await fetch(`http://localhost:8000/${file_id}/${file_key}`);
+          const data = await fetch(`${process.env.API_URL}/${file_id}/${file_key}`);
           const json = await data.json();
           console.log(json);
           if(json.status){
