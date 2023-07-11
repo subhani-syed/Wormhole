@@ -32,7 +32,7 @@ client.connect((err)=>{
 
 
 app.get("/",(req,res)=>{
-    res.send("Hello World!!");
+    res.send("Server Up!!");
 })
 
 app.post("/upload",upload.any(),(req,res)=>{
@@ -67,33 +67,36 @@ app.post("/upload",upload.any(),(req,res)=>{
 app.get("/:file_id/:file_key",async (req,res)=>{
 
     const file_id = req.params.file_id;
-
-    const db = client.db("GridFSDB");
-    console.log("DB connected");
-    const bucket = new mongodb.GridFSBucket(db);
-  
-    const result = await db.collection("fs.files").findOne({"metadata.file_id":file_id})
-    if(result){
-
-        const downloadStream = bucket.openDownloadStream(result._id);
+    
+    try{
+        const db = client.db("GridFSDB");
+        console.log("DB connected");
+        const bucket = new mongodb.GridFSBucket(db);
         
-        let fileData = Buffer.from('');
-  
-        downloadStream.on('error', (error) => {
-            console.error('Error retrieving file from GridFS:', error);
-        });
-        
-        downloadStream.on('data', (chunk) => {
-            fileData = Buffer.concat([fileData,chunk])
-        });
-        
-        downloadStream.on('end', () => {
-            const payload = {"status":true,"name":result.filename,"iv":result.metadata.iv,"blob":fileData};
+        const result = await db.collection("fs.files").findOne({"metadata.file_id":file_id})
+        if(result){        
+            const downloadStream = bucket.openDownloadStream(result._id);
+            
+            let fileData = Buffer.from('');
+    
+            downloadStream.on('error', (error) => {
+                console.error('Error retrieving file from GridFS:', error);
+            });
+            
+            downloadStream.on('data', (chunk) => {
+                fileData = Buffer.concat([fileData,chunk])
+            });
+            
+            downloadStream.on('end', () => {
+                const payload = {"status":true,"name":result.filename,"iv":result.metadata.iv,"blob":fileData};
+                res.json(payload);
+            });
+        }else{
+            const payload = {"status":false};
             res.json(payload);
-        });
-    }else{
-        const payload = {"status":false};
-        res.json(payload);
+        }
+    }catch(err){
+        console.log("Error searching file ",err);
     }
 });
 
