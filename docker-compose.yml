@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: wormhole-client
+    ports:
+      - '1234:80'
+    stdin_open: true
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: wormhole-server
+    ports:
+      - '8000:8000'
