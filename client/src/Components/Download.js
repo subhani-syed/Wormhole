@@ -22,10 +22,11 @@ const Download = () =>{
 
     // Search file
     const searchFile = async () => {
+        toast("Loading...",{
+          position: toast.POSITION.TOP_CENTER,
+        });
         try{
-          const apiUrl = process.env.API_URL;
-          console.log(apiUrl)
-          const data = await fetch(`https://${apiUrl}/${file_id}/${file_key}`);
+          const data = await fetch(`https://api-wormhole.up.railway.app/${file_id}/${file_key}`);
           const json = await data.json();
           console.log(json);
           if(json.status){

@@ -64,13 +64,9 @@ const Upload = () =>{
             formData.append("id",file_id);
             formData.append("expire_time",Date.now() + ttl);
             // Handle error here---->
-            const apiUrl = process.env.API_URL;
-            console.log(apiUrl);
-            const clientUrl = process.env.CLIENT_URL;
-            console.log(clientUrl);
-            const data = await fetch(`https://${apiUrl}/upload`,{method:"POST",body:formData});
+            const data = await fetch(`https://api-wormhole.up.railway.app/upload`,{method:"POST",body:formData});
             console.log(data);
-            setDownloadUrl(`https://${clientUrl}/${file_id}/${key}`);
+            setDownloadUrl(`https://wormhole.up.railway.app/${file_id}/${key}`);
             
         }catch(err){
             console.log("Error Uploading the File ",err)
