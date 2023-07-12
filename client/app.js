@@ -6,6 +6,9 @@ import ErrorPage from "./src/Components/ErrorPage";
 import Download from "./src/Components/Download";
 import Header from "./src/Components/Header";
 import Footer from "./src/Components/Footer";
+import dotenv from "dotenv";
+dotenv.config();
+
 const router = createBrowserRouter([
     {
         path: "/",
