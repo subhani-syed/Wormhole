@@ -1,18 +1,29 @@
-import {Link} from "react-router-dom";
-const Header = () =>{
-    return (<>
-        <div className="flex bg-[#69D2E7] border-4 border-black justify-between m-10 p-10 rounded-[30px] drop-shadow-[4px_4px_0px_black]">
-            <Link to="/">
-                <div className="flex">
-                    <img width="58" height="58" src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/external-galaxy-space-sbts2018-outline-sbts2018-3.png" alt="wormhole-logo"/>
-                    <h1 className="text-6xl">Wormhole</h1>
-                </div>
-            </Link>
-            <div className="flex">
-                <a href="https://github.com/subhani-syed/Wormhole" target="_blank"><h1 className="text-4xl my-2">GitHub</h1></a>
-            </div>
-        </div>
-    </>);
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Header = () => {
+  return (
+    <header className="bg-yellow-500 py-4 px-10 rounded-lg shadow-lg m-10 flex justify-between items-center">
+      <Link to="/" className="flex items-center">
+        <img
+          width="58"
+          height="58"
+          src="https://img.icons8.com/external-sbts2018-outline-sbts2018/58/external-galaxy-space-sbts2018-outline-sbts2018-3.png"
+          alt="wormhole-logo"
+          className="mr-2"
+        />
+        <h1 className="text-4xl font-bold text-white">Wormhole</h1>
+      </Link>
+      <a
+        href="https://github.com/subhani-syed/Wormhole"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xl text-white hover:text-cyan-300 transition duration-300"
+      >
+        GitHub
+      </a>
+    </header>
+  );
 };
 
 export default Header;
